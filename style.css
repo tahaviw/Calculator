@@ -1,0 +1,88 @@
+:root {
+    /* buttons */
+    --clr-grey: rgb(68, 68, 68);
+    --clr-red: rgb(189, 55, 55);
+    --clr-orange: rgb(206, 117, 1);
+    --clr-blue: #0077b6;
+    /* div colors */
+}
+
+body {
+    background-color: rgb(175, 175, 175);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    height :500px;
+    width: 350px;
+    border-radius: 20px;
+}
+
+#display {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    background-color: grey;
+    height: 80px;
+    margin-top: 30px;
+    margin-left: 25px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    height: 100px;
+}
+
+.BTN {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 8px;
+    padding: 20px;
+    margin: 30px 15px;
+    margin-top: 15px;
+}
+button {
+    font-weight: bolder;
+    height: 50px;
+    border-radius: 17px;
+    border: none;
+    background-color: var(--clr-grey);
+    color: white;
+    font-size: 15px;
+}
+
+.btn-op {
+    background-color: var(--clr-orange);
+    font-size: 20px;
+}
+
+
+
+#key-del {
+    background-color: var(--clr-red);
+}
+
+#key-equal {
+    grid-column: span 2;
+    grid-row: span 2;
+    background-color: var(--clr-blue);
+    font-size: 30px;
+}
+
+#key-dot {
+    background-color: var(--clr-orange);
+    font-size: 30px;
+}
+
+#key-ac {
+    grid-column: span 2;
+    grid-row: span 2;
+    background-color: var(--clr-red);
+}
