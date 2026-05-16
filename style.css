@@ -1,88 +1,281 @@
+/* Apple iOS Calculator - Complete Redesign */
 :root {
-    /* buttons */
-    --clr-grey: rgb(68, 68, 68);
-    --clr-red: rgb(189, 55, 55);
-    --clr-orange: rgb(206, 117, 1);
-    --clr-blue: #0077b6;
-    /* div colors */
+    /* Apple iOS Calculator Colors */
+    --clr-black: #000000;
+    --clr-dark-grey: #333333;
+    --clr-light-grey: #A5A5A5;
+    --clr-orange: #FF9500;
+    --clr-white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: rgb(175, 175, 175);
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 20px;
 }
 
 .container {
-    background-color: white;
-    height :500px;
-    width: 350px;
-    border-radius: 20px;
+    background-color: var(--clr-black);
+    border-radius: 60px;
+    padding: 20px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
 }
 
+/* Display Screen */
 #display {
-    overflow: hidden;
+    background-color: var(--clr-black);
+    padding: 40px 25px 25px 25px;
+    text-align: right;
+    min-height: 180px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+#container-result {
+    color: var(--clr-white);
+    font-size: 70px;
+    font-weight: 300;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: -1px;
+    word-wrap: break-word;
+    word-break: break-all;
+    max-width: 100%;
+    line-height: 1.1;
+}
+
+/* Button Grid Layout */
+.BTN {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 10px 5px 15px 5px;
+}
+
+/* Base Button Styles */
+button {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    border: none;
+    background-color: var(--clr-dark-grey);
+    color: var(--clr-white);
+    cursor: pointer;
+    transition: all 0.05s linear;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 300px;
-    background-color: grey;
-    height: 80px;
-    margin-top: 30px;
-    margin-left: 25px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 30px;
-    font-weight: bolder;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    height: 100px;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.BTN {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 8px;
-    padding: 20px;
-    margin: 30px 15px;
-    margin-top: 15px;
-}
-button {
-    font-weight: bolder;
-    height: 50px;
-    border-radius: 17px;
-    border: none;
-    background-color: var(--clr-grey);
-    color: white;
-    font-size: 15px;
+/* Button Hover/Active States */
+button:hover {
+    filter: brightness(1.05);
 }
 
+button:active {
+    transform: scale(0.97);
+    filter: brightness(0.85);
+}
+
+/* Number Buttons (Dark Grey) */
+button:not(.btn-op):not(#key-ac):not(#key-del):not(#key-equal) {
+    background-color: var(--clr-dark-grey);
+    color: var(--clr-white);
+}
+
+button:not(.btn-op):not(#key-ac):not(#key-del):not(#key-equal):active {
+    background-color: #505050;
+}
+
+/* Operation Buttons (Orange) */
 .btn-op {
     background-color: var(--clr-orange);
-    font-size: 20px;
+    color: var(--clr-white);
+    font-size: 38px;
+    font-weight: 400;
 }
 
+.btn-op:active {
+    background-color: var(--clr-white);
+    color: var(--clr-orange);
+    transform: scale(0.97);
+}
 
+/* Active state for operation buttons (when selected) */
+.btn-op.active {
+    background-color: var(--clr-white);
+    color: var(--clr-orange);
+}
 
+/* Top Function Buttons (Light Grey) */
+#key-ac,
 #key-del {
-    background-color: var(--clr-red);
+    background-color: var(--clr-light-grey);
+    color: var(--clr-black);
+    font-size: 28px;
+    font-weight: 500;
 }
 
+#key-ac:active,
+#key-del:active {
+    background-color: #D4D4D4;
+    transform: scale(0.97);
+}
+
+/* Special Zero Button - Spans 2 columns */
+#btn-0 {
+    grid-column: span 2;
+    border-radius: 60px;
+    aspect-ratio: auto;
+    justify-content: flex-start;
+    padding-left: 32px;
+    background-color: var(--clr-dark-grey);
+    color: var(--clr-white);
+}
+
+#btn-0:active {
+    background-color: #505050;
+}
+
+/* Equals Button */
 #key-equal {
-    grid-column: span 2;
-    grid-row: span 2;
-    background-color: var(--clr-blue);
-    font-size: 30px;
-}
-
-#key-dot {
     background-color: var(--clr-orange);
-    font-size: 30px;
+    color: var(--clr-white);
+    font-size: 38px;
+    font-weight: 400;
 }
 
-#key-ac {
-    grid-column: span 2;
-    grid-row: span 2;
-    background-color: var(--clr-red);
+#key-equal:active {
+    background-color: var(--clr-white);
+    color: var(--clr-orange);
+    transform: scale(0.97);
+}
+
+/* Dot Button */
+#key-dot {
+    background-color: var(--clr-dark-grey);
+    color: var(--clr-white);
+    font-size: 38px;
+    font-weight: 500;
+}
+
+#key-dot:active {
+    background-color: #505050;
+}
+
+/* Specific button text adjustments */
+#key-addition,
+#key-minus,
+#key-multplication,
+#key-division {
+    font-size: 38px;
+}
+
+#key-multplication {
+    font-size: 36px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        max-width: 100%;
+        padding: 15px;
+    }
+    
+    #container-result {
+        font-size: 56px;
+    }
+    
+    button {
+        font-size: 28px;
+    }
+    
+    .btn-op {
+        font-size: 34px;
+    }
+    
+    #btn-0 {
+        padding-left: 25px;
+    }
+}
+
+@media (max-width: 380px) {
+    .BTN {
+        gap: 8px;
+    }
+    
+    #container-result {
+        font-size: 48px;
+    }
+    
+    button {
+        font-size: 24px;
+    }
+    
+    .btn-op {
+        font-size: 30px;
+    }
+}
+
+/* Apple-style subtle press effect for all buttons */
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background: rgba(255, 255, 255, 0);
+    transition: background 0.02s ease;
+    pointer-events: none;
+}
+
+button:active::before {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Remove default focus outline and add custom one */
+button:focus {
+    outline: none;
+}
+
+button:focus-visible {
+    outline: 2px solid var(--clr-orange);
+    outline-offset: 2px;
+}
+
+/* Smooth display text transitions */
+#container-result {
+    transition: all 0.1s ease;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.8;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
