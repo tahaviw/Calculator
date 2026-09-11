@@ -19,7 +19,6 @@ This project was built as the second milestone in the JavaScript phase of a self
 - Chained calculations — result of one operation carries into the next
 - Division by zero handled (`Undefined`)
 - Floating point results rounded to 2 decimal places
-- Guard against operator click on empty display
 
 ---
 
@@ -78,7 +77,7 @@ Edge cases (empty input, division by zero, chained operations, decimal validatio
 
 ## Author
 
-**Taha_Belghiti** — self-taught developer, Morocco.
+**Taha_Belghiti** self-taught developer, Morocco.
 Building toward remote full-stack engineering. No degree. Portfolio is the credential.
 
 > GitHub profile: https://github.com/tahaviw
